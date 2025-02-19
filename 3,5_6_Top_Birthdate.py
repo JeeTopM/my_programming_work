@@ -1,4 +1,4 @@
-'''
+"""
 Сотрудники организации 😄
 Дан список сотрудников организации, в котором указаны их фамилии, имена и даты рождения. 
 Напишите программу, которая определяет, в какую из дат родилось больше всего сотрудников.
@@ -11,21 +11,21 @@
 Формат выходных данных
 Программа должна вывести дату, в которую наибольшее количество сотрудников отмечает день рождения, в формате DD.MM.YYYY. 
 Если таких дат несколько, программа должна вывести их все в порядке возрастания, каждую на отдельной строке, в том же формате.
-'''
-from datetime import *
+"""
+
+from datetime import datetime
 
 n = int(input())
 pattern = "%d.%m.%Y"
-pattern_dt = datetime.strftime
 data = {}
 for _ in range(n):
-    *name, birthday = input().split()
+    *_, birthday = input().split()
     birthday = datetime.strptime(birthday, pattern)
     if birthday in data:
         data[birthday] += 1
     else:
         data[birthday] = 1
 max_days = max(data.values())
-spis_days = list(filter(lambda x: data[x] == max_days, data))
-for i in range(len(spis_days)):
-    print(datetime.strftime(spis_days[i], pattern))
+spis_days = [key for key, value in data.items() if value == max_days]
+for day in sorted(spis_days):
+    print(datetime.strftime(day, pattern))
