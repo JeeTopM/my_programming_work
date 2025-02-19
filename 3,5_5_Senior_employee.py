@@ -13,7 +13,17 @@ n — количество сотрудников, работающих в ор�
 Если таких сотрудников несколько, программа должна вывести их дату рождения, а также их количество, разделив пробелом.
 """
 
-from datetime import *
+from datetime import datetime
+
+
+def sort_dict(birth):
+    oldest_date = min(birth)
+    names = [name for name in birth[oldest_date]]
+    if len(names) > 1:
+        print(f"{pattern_dt(oldest_date, pattern)} {len(names)}")
+    else:
+        print(f"{pattern_dt(oldest_date, pattern)} {names[0]}")
+
 
 n = int(input())
 pattern = "%d.%m.%Y"
@@ -30,10 +40,6 @@ for i in range(n):
         birth_dict[dt_birth].append(name)
     else:
         birth_dict[dt_birth] = [name]
-oldest_date = min(birth_dict)
-names = [name for name in birth_dict[oldest_date]]
-# Вывод результата
-if len(names) > 1:
-    print(f"{pattern_dt(oldest_date, pattern)} {len(names)}")
-else:
-    print(f"{pattern_dt(oldest_date, pattern)} {names[0]}")
+
+# Запускаем функцию, которая выведет результат
+sort_dict(birth_dict)
