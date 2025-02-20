@@ -10,7 +10,7 @@ declensions — кортеж из трех вариантов склонения
 """
 
 
-def choose_plural(num, *args):
+def choose_plural(num, args):
     data = {0: 2, 1: 0, 2: 1, 3: 1, 4: 1, 5: 2, 6: 2, 7: 2, 8: 2, 9: 2, 10: 2,
             11: 2, 12: 2, 13: 2, 14: 2, 15: 2, 16: 2, 17: 2, 18: 2, 19: 2, 20: 2
     }
@@ -20,7 +20,7 @@ def choose_plural(num, *args):
         n = int(str_n[-2:])
     if n not in data:
         n = int(str_n[-1])
-    return f"{num} {args[0][data[n]]}"
+    return f"{num} {args[data[n]]}"
 
 
 # примеры:
