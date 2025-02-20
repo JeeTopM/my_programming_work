@@ -9,12 +9,20 @@ declensions — кортеж из трех вариантов склонения
 
 
 def choose_plural(num, *args):
-    return
+    data = {0: 2, 1: 0, 2: 1, 3: 1, 4: 1, 5: 2, 6: 2, 7: 2, 8: 2, 9: 2, 10: 2,
+            11: 2, 12: 2, 13: 2, 14: 2, 15: 2, 16: 2, 17: 2, 18: 2, 19: 2, 20: 2
+    }
+    n = num
+    str_n = str(num)
+    if len(str_n) > 2:
+        n = int(str_n[-2:])
+    if n not in data:
+        n = int(str_n[-1])
+    return f"{num} {args[0][data[n]]}"
 
 
 # примеры:
 print(choose_plural(21, ("пример", "примера", "примеров")))
-'''
 print(choose_plural(92, ("гвоздь", "гвоздя", "гвоздей")))
 print(choose_plural(8, ("яблоко", "яблока", "яблок")))
 print(choose_plural(111223, ("копейка", "копейки", "копеек")))
@@ -28,4 +36,3 @@ print(choose_plural(505, ("утка", "утки", "уток")))
 print(choose_plural(666, ("шкаф", "шкафа", "шкафов")))
 print(choose_plural(11, ("стул", "стула", "стульев")))
 print(choose_plural(3458438435812, ("доллар", "доллара", "долларов")))
-'''
