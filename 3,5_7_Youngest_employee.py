@@ -24,22 +24,14 @@ data_now = datetime.strptime(input(), pattern)
 data_sev = data_now + timedelta(days=7)
 candidates = {}
 
-
 for _ in range(int(input())):
     *name, birth = input().split(" ")
     birthday = datetime.strptime(birth, pattern)
-    name = " ".join(name)
-    days = 0
-    if data_now < birthday.replace(year=data_now.year) <= data_sev:
-        days = (birthday.replace(year=data_now.year) - data_now).days
-    elif data_now < birthday.replace(year=data_sev.year) <= data_sev:
-        days = (birthday.replace(year=data_sev.year) - data_now).days
-    else:
-        continue
-    candidates["".join(name)] = birthday.year
+    if data_now < birthday.replace(year=data_sev.year) <= data_sev:
+        candidates[" ".join(name)] = birthday
 
-if len(candidates) == 0:
-    print("Дни рождения не планируются")
-else:
-    max_key = max(candidates, key=candidates.get)
-    print(max_key)
+print(
+    "Дни рождения не планируются"
+    if not candidates
+    else (max(candidates, key=candidates.get))
+)
