@@ -8,11 +8,23 @@ year — натуральное число
 """
 
 import calendar
-from datetime import timedelta, date
+from datetime import date
 
 
 def get_all_mondays(year):
-    return
+    days_in_month = []
+    for m in range(1, 13):
+        month_calendar = calendar.monthrange(year, m)
+        days_in_month.append(month_calendar[1])
+
+    mondays = []
+    for m in range(1, 13):
+        for d in range(1, days_in_month[m - 1] + 1):
+            if calendar.weekday(year, m, d) == 0:
+                mondays.append(date(year, m, d))
+    return mondays
 
 
-print(get_all_mondays(2021))
+year = int(input())
+for month_in_year in get_all_mondays(year):
+    print(month_in_year)
