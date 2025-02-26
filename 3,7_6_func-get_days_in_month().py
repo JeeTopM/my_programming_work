@@ -9,7 +9,7 @@ month — полное название месяца на английском
 """
 
 import calendar
-from datetime import datetime
+from datetime import datetime, date
 
 
 def get_days_in_month(year, month):
